@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox id="VBox" alignment="TOP_LEFT" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Label fx:id="detailsLabel" minHeight="20.0" text="ФИО" textAlignment="LEFT" wrapText="true" VBox.vgrow="ALWAYS">
+          <font>
+            <Font size="12.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label id="detailsLabel" font="$x1" minHeight="20.0" text="Телефон" textAlignment="LEFT" wrapText="true" />
+      </children>
+      <padding>
+        <Insets top="25.0" />
+      </padding>
+    </VBox>
+    <VBox maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" prefWidth="400.0" spacing="7.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <children>
+        <Label fx:id="messageLabel" text="Введите данные " textAlignment="LEFT" wrapText="true">
+          <font>
+            <Font name="System Bold" size="13.0" />
+          </font>
+        </Label>
+        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" />
+        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" />
+        <HBox alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity">
+          <children>
+            <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" text="Ok">
+              <HBox.margin>
+                <Insets right="30.0" />
+              </HBox.margin>
+            </Button>
+            <Button fx:id="cancelButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" text="Cancel" />
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
+  </columnConstraints>
+  <padding>
+    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+  </padding>
+  <rowConstraints>
+    <RowConstraints maxHeight="+Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+  </rowConstraints>
+</GridPane>

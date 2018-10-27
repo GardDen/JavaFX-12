@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane disable="false" focusTraversable="false" layoutX="0.0" minHeight="400.0" minWidth="400.0" mouseTransparent="false" prefHeight="200.0" prefWidth="510.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller.Controller">
+  <children>
+    <HBox alignment="CENTER_LEFT" minHeight="60.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#showDialog" prefHeight="40.0" prefWidth="160.0" text="Добавить">
+          <HBox.margin>
+            <Insets bottom="20.0" left="20.0" top="20.0" />
+          </HBox.margin>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Удалить">
+          <HBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" fx:id="x1" />
+          </HBox.margin>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Изменить">
+          <HBox.margin>
+            <Insets right="20.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+    </HBox>
+    <AnchorPane minHeight="60.0" prefHeight="60.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <children>
+        <TextField maxHeight="-1.0" maxWidth="-1.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="400.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="20.0" />
+        <Button alignment="CENTER" contentDisplay="BOTTOM" minHeight="40.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Поиск" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+      <children>
+        <TableView cache="true" cacheHint="DEFAULT" editable="false" maxHeight="-1.0" maxWidth="-1.0" minHeight="250.0" minWidth="400.0" prefHeight="200.0" prefWidth="560.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+          <columns>
+            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" styleClass="table" text="ФИО" />
+            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" text="Телефон" />
+          </columns>
+        </TableView>
+      </children>
+      <padding>
+        <Insets />
+      </padding>
+    </AnchorPane>
+    <AnchorPane layoutX="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="491.0" AnchorPane.bottomAnchor="0.0">
+      <children>
+        <Label alignment="CENTER" layoutX="0.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="150.0" text="Количество записей:" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" />
+      </children>
+      <padding>
+        <Insets />
+      </padding>
+    </AnchorPane>
+  </children>
+</AnchorPane>
