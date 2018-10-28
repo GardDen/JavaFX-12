@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane disable="false" focusTraversable="false" layoutX="0.0" minHeight="400.0" minWidth="400.0" mouseTransparent="false" prefHeight="200.0" prefWidth="510.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller.Controller">
+<AnchorPane disable="false" focusTraversable="false" layoutX="0.0" minHeight="400.0" minWidth="400.0" mouseTransparent="false" prefHeight="200.0" prefWidth="510.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller.MainController">
   <children>
     <HBox alignment="CENTER_LEFT" minHeight="60.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
