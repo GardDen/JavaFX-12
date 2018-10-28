@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane disable="false" focusTraversable="false" layoutX="0.0" minHeight="400.0" minWidth="400.0" mouseTransparent="false" prefHeight="200.0" prefWidth="510.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller.MainController">
+<AnchorPane disable="false" focusTraversable="false" layoutX="0.0" minHeight="400.0" minWidth="400.0" mouseTransparent="false" prefHeight="200.0" prefWidth="510.0" snapToPixel="true" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.MainController">
   <children>
     <HBox alignment="CENTER_LEFT" minHeight="60.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#showDialog" prefHeight="40.0" prefWidth="160.0" text="Добавить" fx:id="addButton">
+        <Button fx:id="addButton" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#showDialog" prefHeight="40.0" prefWidth="160.0" text="Добавить">
           <HBox.margin>
             <Insets bottom="20.0" left="20.0" top="20.0" />
           </HBox.margin>
         </Button>
-        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Удалить">
+        <Button fx:id="deleteButton" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Удалить">
           <HBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" fx:id="x1" />
           </HBox.margin>
         </Button>
-        <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Изменить">
+        <Button id="change" fx:id="changeButton" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Изменить">
           <HBox.margin>
             <Insets right="20.0" />
           </HBox.margin>
@@ -29,7 +29,7 @@
     <AnchorPane minHeight="60.0" prefHeight="60.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
       <children>
         <TextField maxHeight="-1.0" maxWidth="-1.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="400.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="20.0" />
-        <Button alignment="CENTER" contentDisplay="BOTTOM" minHeight="40.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Поиск" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+        <Button fx:id="searchButton" alignment="CENTER" contentDisplay="BOTTOM" minHeight="40.0" minWidth="50.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Поиск" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
       </children>
     </AnchorPane>
     <AnchorPane prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
