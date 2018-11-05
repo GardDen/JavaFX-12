@@ -34,10 +34,10 @@
     </AnchorPane>
     <AnchorPane prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
       <children>
-        <TableView cache="true" cacheHint="DEFAULT" editable="false" maxHeight="-1.0" maxWidth="-1.0" minHeight="250.0" minWidth="400.0" prefHeight="200.0" prefWidth="560.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <TableView cache="true" cacheHint="DEFAULT" editable="false" maxHeight="-1.0" maxWidth="-1.0" minHeight="250.0" minWidth="400.0" prefHeight="200.0" prefWidth="560.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" fx:id="tableAdressBook">
           <columns>
-            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" styleClass="table" text="ФИО" />
-            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" text="Телефон" />
+            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" styleClass="table" text="FIO" fx:id="columnFIO" />
+            <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" text="Phone" fx:id="columnPhone"/>
           </columns>
         </TableView>
       </children>
@@ -47,7 +47,7 @@
     </AnchorPane>
     <AnchorPane layoutX="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="491.0" AnchorPane.bottomAnchor="0.0">
       <children>
-        <Label alignment="CENTER" layoutX="0.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="150.0" text="Количество записей:" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" />
+        <Label alignment="CENTER" layoutX="0.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="150.0" text="Количество записей:" textAlignment="LEFT" AnchorPane.bottomAnchor="0.0" fx:id="countLabel"/>
       </children>
       <padding>
         <Insets />

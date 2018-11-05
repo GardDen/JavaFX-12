@@ -1,24 +1,24 @@
 package objects;
 
 public class Person {
-    private String name;
+    private String fio;
     private String phone;
 
 
     public Person(String name, String phone) {
-        this.name = name;
+        this.fio = name;
         this.phone = phone;
     }
 
     public Person() {
     }
 
-    public String getName() {
-        return name;
+    public String getFio() {
+        return fio;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
     public String getPhone() {
@@ -27,5 +27,10 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return fio + " " + phone;
     }
 }
