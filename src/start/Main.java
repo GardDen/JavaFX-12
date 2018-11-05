@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    public CollectionAddressBook addressBookImpl = new CollectionAddressBook();
 
 
     @Override
