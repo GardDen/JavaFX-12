@@ -6,8 +6,7 @@ import javafx.collections.ObservableList;
 import objects.Person;
 
 public class CollectionAddressBook implements Pressable {
-
-    private ObservableList<Person> persons = FXCollections.observableArrayList();
+        private ObservableList<Person> persons = FXCollections.observableArrayList();
 
     public ObservableList<Person> getPersonList() {
         return persons;

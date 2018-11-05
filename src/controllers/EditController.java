@@ -1,4 +1,4 @@
-package controller;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -13,7 +13,8 @@ public class EditController {
         stage.close();
     }
 
-    public void pressCancelInDialog(ActionEvent event) {
+    public void actionClose(ActionEvent event) {
+//        Node source = (Node) event.getSource();
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }

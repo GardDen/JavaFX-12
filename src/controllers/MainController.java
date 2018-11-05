@@ -1,16 +1,14 @@
-package controller;
+package controllers;
 
 import interfaces.impls.CollectionAddressBook;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,7 +23,7 @@ public class MainController {
     public Button deleteButton;
 
     @FXML
-    public Button changeButton;
+    public Button editButton;
 
     @FXML
     public Button searchButton;
@@ -47,13 +45,18 @@ public class MainController {
 
     @FXML
     private void initialize() {
+        //tableAdressBook.getSelectionModel().getSelectionMode(SelectionMode.MULTIPLE);
+
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
         addressBookImpl.fillTestData();
-
         tableAdressBook.setItems(addressBookImpl.getPersonList());
-
-        updateCountLabel();
+        addressBookImpl.getPersonList().addListener(new ListChangeListener<Person>() {
+            @Override
+            public void onChanged(Change<? extends Person> c) {
+                updateCountLabel();
+            }
+        });
     }
 
     private void updateCountLabel() {
@@ -61,6 +64,28 @@ public class MainController {
     }
 
     public void showDialog(ActionEvent actionEvent) {
+
+        Object source = actionEvent.getSource();
+
+        if (!(source instanceof Button)) {
+            return;
+        }
+
+        Button clickedButton = (Button) source;
+
+        Person selectedPerson = (Person) tableAdressBook.getSelectionModel().getSelectedItem();
+
+        switch (clickedButton.getId()) {
+            case "addButton":
+                System.out.println("add " + selectedPerson);
+                break;
+            case "editButton":
+                System.out.println("edit " + selectedPerson);
+                break;
+            case "deleteButton":
+                System.out.println("delete" + selectedPerson);
+                break;
+        }
 
         try {
             addButton.setText("Заблокировано!");
@@ -78,6 +103,5 @@ public class MainController {
         } catch (IOException exc) {
             exc.printStackTrace();
         }
-
     }
 }
