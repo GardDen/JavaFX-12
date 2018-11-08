@@ -38,11 +38,11 @@
             <Font size="13.0" />
           </font>
         </Label>
-        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" />
-        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" />
+        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" fx:id="txtFIO"/>
+        <TextField maxWidth="-1.0" minHeight="20.0" minWidth="100.0" prefWidth="100.0" fx:id="txtPhone"/>
         <HBox alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity">
           <children>
-            <Button fx:id="okButton" defaultButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#pressOkInDialog" text="Ok">
+            <Button fx:id="okButton" defaultButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#actionOk" text="Ok">
               <HBox.margin>
                 <Insets right="30.0" />
               </HBox.margin>
