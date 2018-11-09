@@ -43,6 +43,7 @@ public class MainController {
     private FXMLLoader fxmlLoader = new FXMLLoader();
     private EditController editController;
     private Stage edidDialogStage;
+    private Window mainStage;
 
     @FXML
     private void initialize() {
@@ -85,7 +86,7 @@ public class MainController {
         Button clickedButton = (Button) source;
 
         Person selectedPerson = (Person) tableAdressBook.getSelectionModel().getSelectedItem();
-        Window parentWindow = ((Node) actionEvent.getSource()).getScene().getWindow();
+        mainStage = ((Node) actionEvent.getSource()).getScene().getWindow();
         try {
             fxmlEdit = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
         } catch (IOException e) {
@@ -96,19 +97,27 @@ public class MainController {
         switch (clickedButton.getId()) {
             case "addButton":
                 System.out.println("add " + selectedPerson);
-                showDialog(parentWindow);
+                editController.setPerson(selectedPerson);
+                showDialog();
+                addressBookImpl.add(editController.getPerson());
                 break;
             case "editButton":
-                System.out.println("edit " + selectedPerson);
-                showDialog(parentWindow);
+                if (selectedPerson != null) {
+                    System.out.println("edit " + selectedPerson);
+                    showDialog();
+                } else {
+                    System.out.println("Select the row of the table!");
+                }
+
                 break;
             case "deleteButton":
                 System.out.println("delete" + selectedPerson);
+                addressBookImpl.delete((Person)tableAdressBook.getSelectionModel().getSelectedItem());
                 break;
         }
     }
 
-    private void showDialog(Window parentWindow) {
+    private void showDialog() {
         if (edidDialogStage == null){
             edidDialogStage = new Stage();
             edidDialogStage.setTitle("Редактирование записи");
@@ -117,8 +126,8 @@ public class MainController {
             edidDialogStage.setResizable(false);
             edidDialogStage.setScene(new Scene(fxmlEdit));
             edidDialogStage.initModality(Modality.WINDOW_MODAL);
-            edidDialogStage.initOwner(parentWindow);
+            edidDialogStage.initOwner(mainStage);
         }
-        edidDialogStage.show();
+        edidDialogStage.showAndWait();
     }
 }

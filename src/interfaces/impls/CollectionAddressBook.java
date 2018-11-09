@@ -14,7 +14,9 @@ public class CollectionAddressBook implements Pressable {
 
     @Override
     public void add(Person person) {
-        persons.add(person);
+        if (person.getFio() != null && person.getPhone() != null) {
+            persons.add(person);
+        }
     }
 
     @Override
