@@ -80,7 +80,8 @@ public class MainController {
      * расположении всех кнопок и окон для диалогового окна).
      * 1 устанавливает место откуда грузиться будет файл
      * 2 загружается
-     * 3 подключается с текущим контроллером, который обрабатывает все действия и логику кода
+     * 3 получаем ссылку на контроллер диалогового окна
+     * 4 все оборачиваем в try так как может выскочить ошибка загрузки fxml файлв
      */
     private void initLoader() {
         try {
@@ -88,6 +89,7 @@ public class MainController {
             fxmlLoader.load();
             editDialogController = fxmlLoader.getController();
         } catch (IOException exc) {
+            System.out.println("Error: Неверное расположение fxml файла или ошибка внутри него.");
             exc.printStackTrace();
         }
     }
@@ -105,21 +107,18 @@ public class MainController {
         if (!(source instanceof Button)) {
             return;
         }
-        Button clickedButton = (Button) source;
 
+        Button clickedButton = (Button) source;
+        Person person;
         Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
         mainStage = ((Node) actionEvent.getSource()).getScene().getWindow();
-        try {
-            fxmlEdit = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error: start edit.fxml");
-        }
+        editDialogController.setPerson(selectedPerson);
 
         switch (clickedButton.getId()) {
             case "addButton":
-                System.out.println("add " + selectedPerson);
-                editDialogController.setPerson(selectedPerson);
+                person = new Person();
+                editDialogController.setPerson(person);
+                System.out.println("add " + person);
                 showDialog();
                 addressBookImpl.add(editDialogController.getPerson());
                 break;
@@ -130,7 +129,6 @@ public class MainController {
                 } else {
                     System.out.println("Select the row of the table!");
                 }
-
                 break;
             case "deleteButton":
                 System.out.println("delete" + selectedPerson);
@@ -139,6 +137,14 @@ public class MainController {
         }
     }
 
+    private Person checkSelectedItem() {
+        Person person = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+    }
+
+    /**
+     * Используется ленивая инициализация editDialogStage, только один раз. Добовляем ссылку к главному контроллеру
+     * и просто прячем показываем её.
+     */
     private void showDialog() {
         if (editDialogStage == null){
             editDialogStage = new Stage();
