@@ -20,6 +20,7 @@ public class CollectionAddressBook implements Pressable {
 
     @Override
     public void add(Person person) {
+        System.out.println(person.toString());
         if (person.getFio() != null && person.getPhone() != null) {
             persons.add(person);
         }

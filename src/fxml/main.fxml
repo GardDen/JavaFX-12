@@ -34,7 +34,7 @@
     </AnchorPane>
     <AnchorPane prefHeight="240.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
       <children>
-        <TableView fx:id="tableAdressBook" cache="true" cacheHint="DEFAULT" editable="false" maxHeight="-1.0" maxWidth="-1.0" minHeight="250.0" minWidth="400.0" prefHeight="200.0" prefWidth="560.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <TableView fx:id="tableAddressBook" cache="true" cacheHint="DEFAULT" editable="false" maxHeight="-1.0" maxWidth="-1.0" minHeight="250.0" minWidth="400.0" prefHeight="200.0" prefWidth="560.0" tableMenuButtonVisible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
           <columns>
             <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" styleClass="table" text="FIO" fx:id="columnFIO" />
             <TableColumn editable="false" maxWidth="1000.0" minWidth="100.0" prefWidth="200.0" resizable="true" text="Phone" fx:id="columnPhone" />

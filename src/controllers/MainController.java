@@ -32,17 +32,17 @@ public class MainController {
     @FXML
     public Label countLabel;
     @FXML
-    private TableView tableAdressBook;
+    private TableView tableAddressBook;
     @FXML
     private TableColumn<Person, String> columnFIO;
     @FXML
     private TableColumn<Person, String> columnPhone;
 
-    public CollectionAddressBook addressBookImpl = new CollectionAddressBook();
+    private CollectionAddressBook addressBookImpl = new CollectionAddressBook();
     private Parent fxmlEdit;
     private FXMLLoader fxmlLoader = new FXMLLoader();
-    private EditController editController;
-    private Stage edidDialogStage;
+    private EditDialogController editDialogController;
+    private Stage editDialogStage;
     private Window mainStage;
 
     @FXML
@@ -72,7 +72,7 @@ public class MainController {
      */
     private void fillData() {
         addressBookImpl.fillTestData();
-        tableAdressBook.setItems(addressBookImpl.getPersonList());
+        tableAddressBook.setItems(addressBookImpl.getPersonList());
     }
 
     /**
@@ -86,7 +86,7 @@ public class MainController {
         try {
             fxmlLoader.setLocation(getClass().getResource("../fxml/edit.fxml"));
             fxmlLoader.load();
-            editController = fxmlLoader.getController();
+            editDialogController = fxmlLoader.getController();
         } catch (IOException exc) {
             exc.printStackTrace();
         }
@@ -107,7 +107,7 @@ public class MainController {
         }
         Button clickedButton = (Button) source;
 
-        Person selectedPerson = (Person) tableAdressBook.getSelectionModel().getSelectedItem();
+        Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
         mainStage = ((Node) actionEvent.getSource()).getScene().getWindow();
         try {
             fxmlEdit = FXMLLoader.load(getClass().getResource("../fxml/edit.fxml"));
@@ -119,9 +119,9 @@ public class MainController {
         switch (clickedButton.getId()) {
             case "addButton":
                 System.out.println("add " + selectedPerson);
-                editController.setPerson(selectedPerson);
+                editDialogController.setPerson(selectedPerson);
                 showDialog();
-                addressBookImpl.add(editController.getPerson());
+                addressBookImpl.add(editDialogController.getPerson());
                 break;
             case "editButton":
                 if (selectedPerson != null) {
@@ -134,22 +134,22 @@ public class MainController {
                 break;
             case "deleteButton":
                 System.out.println("delete" + selectedPerson);
-                addressBookImpl.delete((Person)tableAdressBook.getSelectionModel().getSelectedItem());
+                addressBookImpl.delete((Person) tableAddressBook.getSelectionModel().getSelectedItem());
                 break;
         }
     }
 
     private void showDialog() {
-        if (edidDialogStage == null){
-            edidDialogStage = new Stage();
-            edidDialogStage.setTitle("Редактирование записи");
-            edidDialogStage.setMinHeight(150);
-            edidDialogStage.setMinWidth(300);
-            edidDialogStage.setResizable(false);
-            edidDialogStage.setScene(new Scene(fxmlEdit));
-            edidDialogStage.initModality(Modality.WINDOW_MODAL);
-            edidDialogStage.initOwner(mainStage);
+        if (editDialogStage == null){
+            editDialogStage = new Stage();
+            editDialogStage.setTitle("Редактирование записи");
+            editDialogStage.setMinHeight(150);
+            editDialogStage.setMinWidth(300);
+            editDialogStage.setResizable(false);
+            editDialogStage.setScene(new Scene(fxmlEdit));
+            editDialogStage.initModality(Modality.WINDOW_MODAL);
+            editDialogStage.initOwner(mainStage);
         }
-        edidDialogStage.showAndWait();
+        editDialogStage.showAndWait();
     }
 }

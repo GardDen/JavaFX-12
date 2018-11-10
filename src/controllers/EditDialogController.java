@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.Person;
 
-public class EditController {
+public class EditDialogController {
     @FXML
     public TextField txtFIO;
     @FXML
@@ -16,8 +16,6 @@ public class EditController {
     private Button okButton;
     @FXML
     private Button cancelButton;
-
-
 
     private Person person;
 

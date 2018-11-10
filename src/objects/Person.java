@@ -3,9 +3,10 @@ package objects;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Person {
+    //нужны для лучшего отображения данных в таблице, благодаря связям,
+    // более быстро на автомате обновляет данные в таблице
     private SimpleStringProperty fio = new SimpleStringProperty("");
     private SimpleStringProperty phone = new SimpleStringProperty("");
-
 
     public Person(String name, String phone) {
         this.fio = new SimpleStringProperty(name);
