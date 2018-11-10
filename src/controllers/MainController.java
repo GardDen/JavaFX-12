@@ -3,6 +3,7 @@ package controllers;
 import interfaces.impls.CollectionAddressBook;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -51,7 +53,7 @@ public class MainController {
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
         initListeners();
         fillData();
-        initLoader();
+        initLoader("../fxml/edit.fxml");
     }
 
     /**
@@ -63,6 +65,16 @@ public class MainController {
             @Override
             public void onChanged(Change<? extends Person> c) {
                 updateCountLabel();
+            }
+        });
+
+        tableAddressBook.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    editDialogController.setPerson((Person) tableAddressBook.getSelectionModel().getSelectedItem());
+                    showDialog();
+                }
             }
         });
     }
@@ -82,11 +94,12 @@ public class MainController {
      * 2 загружается
      * 3 получаем ссылку на контроллер диалогового окна
      * 4 все оборачиваем в try так как может выскочить ошибка загрузки fxml файлв
+     * @param root
      */
-    private void initLoader() {
+    private void initLoader(String root) {
         try {
-            fxmlLoader.setLocation(getClass().getResource("../fxml/edit.fxml"));
-            fxmlLoader.load();
+            fxmlLoader.setLocation(getClass().getResource(root));
+            fxmlEdit = fxmlLoader.load();
             editDialogController = fxmlLoader.getController();
         } catch (IOException exc) {
             System.out.println("Error: Неверное расположение fxml файла или ошибка внутри него.");
@@ -110,9 +123,7 @@ public class MainController {
 
         Button clickedButton = (Button) source;
         Person person;
-        Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
         mainStage = ((Node) actionEvent.getSource()).getScene().getWindow();
-        editDialogController.setPerson(selectedPerson);
 
         switch (clickedButton.getId()) {
             case "addButton":
@@ -123,22 +134,25 @@ public class MainController {
                 addressBookImpl.add(editDialogController.getPerson());
                 break;
             case "editButton":
-                if (selectedPerson != null) {
-                    System.out.println("edit " + selectedPerson);
-                    showDialog();
-                } else {
-                    System.out.println("Select the row of the table!");
-                }
+                editEntry();
                 break;
             case "deleteButton":
-                System.out.println("delete" + selectedPerson);
+                //старт окна message
                 addressBookImpl.delete((Person) tableAddressBook.getSelectionModel().getSelectedItem());
                 break;
         }
     }
 
-    private Person checkSelectedItem() {
-        Person person = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+    private void editEntry() {
+        Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            System.out.println("edit " + selectedPerson);
+            showDialog();
+        } else {
+            System.out.println("Select the row of the table!");
+            //Stert fxml message
+            editEntry();
+        }
     }
 
     /**
@@ -157,5 +171,11 @@ public class MainController {
             editDialogStage.initOwner(mainStage);
         }
         editDialogStage.showAndWait();
+    }
+
+    private void showMessage() {
+        initLoader("../fxml/message.fxml");
+        editDialogStage.setTitle("Сообщение");
+        editDialogStage.setScene(new Scene(fxmlEdit));
     }
 }
