@@ -5,6 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import objects.Person;
 
+/**
+ * Этот класс является коллекцией.
+ * Содержит в себе, обертывает, ObservableList persons.
+ * @see Pressable интерфейс завязывает действия графического интерфейса и данных содержащихся в коллекции,
+ * т.е. добавить, изменить, удалить.
+ */
 public class CollectionAddressBook implements Pressable {
         private ObservableList<Person> persons = FXCollections.observableArrayList();
 
@@ -28,13 +34,6 @@ public class CollectionAddressBook implements Pressable {
     public void delete(Person person) {
         persons.remove(person);
     }
-
-    public void printAddressBook() {
-        for (Person person : persons) {
-            System.out.println(person.toString());
-        }
-    }
-
 
     public void fillTestData() {
         Person person1 = new Person("Den", "+375(29)1234567");

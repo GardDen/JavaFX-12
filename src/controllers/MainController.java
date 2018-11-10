@@ -47,20 +47,42 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        //tableAdressBook.getSelectionModel().getSelectionMode(SelectionMode.MULTIPLE);
         columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
+        initListeners();
+        fillData();
+        initLoader();
+    }
 
+    /**
+     * Подключаем Listeners к таблице. Слушает любые изменения данных таблицы. Изменение, добавление, удаление и
+     * отображает их в нашей таблице.
+     */
+    private void initListeners() {
         addressBookImpl.getPersonList().addListener(new ListChangeListener<Person>() {
             @Override
             public void onChanged(Change<? extends Person> c) {
                 updateCountLabel();
             }
         });
+    }
+
+    /**
+     * Заносимм в коллекцию тестовые данные. А потом подключаем её к таблице для отображения этих данных.
+     */
+    private void fillData() {
         addressBookImpl.fillTestData();
-
         tableAdressBook.setItems(addressBookImpl.getPersonList());
+    }
 
+    /**
+     * Инициализируем FXMLLoader (загружает файл .fxml, в котором хранится информация о графическом интерфейсе
+     * расположении всех кнопок и окон для диалогового окна).
+     * 1 устанавливает место откуда грузиться будет файл
+     * 2 загружается
+     * 3 подключается с текущим контроллером, который обрабатывает все действия и логику кода
+     */
+    private void initLoader() {
         try {
             fxmlLoader.setLocation(getClass().getResource("../fxml/edit.fxml"));
             fxmlLoader.load();
