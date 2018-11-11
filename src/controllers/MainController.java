@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,8 +21,10 @@ import javafx.stage.Window;
 import objects.Person;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
     @FXML
     public Button addButton;
     @FXML
@@ -46,21 +48,13 @@ public class MainController {
     private EditDialogController editDialogController;
     private Stage editDialogStage;
     private Window mainStage;
-
-    @FXML
-    private void initialize() {
-        columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
-        columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
-        initListeners();
-        fillData();
-        initLoader("../fxml/edit.fxml");
-    }
+    private ResourceBundle resourceBundle;
 
     /**
      * Подключаем Listeners к таблице. Слушает любые изменения данных таблицы. Изменение, добавление, удаление и
      * отображает их в нашей таблице.
      */
-    private void initListeners() {
+    private void initListeners()  {
         addressBookImpl.getPersonList().addListener(new ListChangeListener<Person>() {
             @Override
             public void onChanged(Change<? extends Person> c) {
@@ -70,7 +64,7 @@ public class MainController {
 
         tableAddressBook.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)  {
                 if (event.getClickCount() == 2) {
                     editDialogController.setPerson((Person) tableAddressBook.getSelectionModel().getSelectedItem());
                     showDialog();
@@ -108,7 +102,7 @@ public class MainController {
     }
 
     private void updateCountLabel() {
-        countLabel.setText("Количество записей: " + addressBookImpl.getPersonList().size());
+        countLabel.setText(resourceBundle.getString("key.count") + ": " + addressBookImpl.getPersonList().size());
     }
 
     /**
@@ -122,36 +116,37 @@ public class MainController {
         }
 
         Button clickedButton = (Button) source;
-        Person person;
-        mainStage = ((Node) actionEvent.getSource()).getScene().getWindow();
+        Person person = new Person();
+        editDialogController.setTxtFIO("");
+        editDialogController.setTxtPhone("");
 
         switch (clickedButton.getId()) {
             case "addButton":
-                person = new Person();
                 editDialogController.setPerson(person);
-                System.out.println("add " + person);
                 showDialog();
                 addressBookImpl.add(editDialogController.getPerson());
                 break;
             case "editButton":
-                editEntry();
+                person = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+                if (person == null) {
+                    //старт окна message
+                    System.out.println("Чтобы изменить строку выберите ее.");
+                    return;
+                }
+                editDialogController.setPerson(person);
+                showDialog();
+                //addressBookImpl.edit(editDialogController.getPerson());
+                //editEntry();
                 break;
             case "deleteButton":
-                //старт окна message
-                addressBookImpl.delete((Person) tableAddressBook.getSelectionModel().getSelectedItem());
+                person = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+                if (person == null) {
+                    //старт окна message
+                    System.out.println("Чтобы удалить строку выберите ее.");
+                    return;
+                }
+                addressBookImpl.delete(person);
                 break;
-        }
-    }
-
-    private void editEntry() {
-        Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            System.out.println("edit " + selectedPerson);
-            showDialog();
-        } else {
-            System.out.println("Select the row of the table!");
-            //Stert fxml message
-            editEntry();
         }
     }
 
@@ -173,9 +168,36 @@ public class MainController {
         editDialogStage.showAndWait();
     }
 
-    private void showMessage() {
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.resourceBundle = resources;
+        columnFIO.setCellValueFactory(new PropertyValueFactory<Person, String>("fio"));
+        columnPhone.setCellValueFactory(new PropertyValueFactory<Person, String>("phone"));
+        initListeners();
+        fillData();
+        initLoader("../fxml/edit.fxml");
+    }
+
+    /*private void showMessage() {
         initLoader("../fxml/message.fxml");
         editDialogStage.setTitle("Сообщение");
         editDialogStage.setScene(new Scene(fxmlEdit));
-    }
+        editDialogStage.showAndWait();
+    }*/
+
+     /*private void editEntry() {
+        Person selectedPerson = (Person) tableAddressBook.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            System.out.println("edit " + selectedPerson);
+            showDialog();
+        } else {
+            System.out.println("Select the row of the table!");
+            showMessage();
+            editEntry();
+        }
+    }*/
 }

@@ -14,7 +14,6 @@ public class Person {
     }
 
     public Person() {
-
     }
 
     public String getFio() {

@@ -12,7 +12,7 @@ import objects.Person;
  * т.е. добавить, изменить, удалить.
  */
 public class CollectionAddressBook implements Pressable {
-        private ObservableList<Person> persons = FXCollections.observableArrayList();
+    private ObservableList<Person> persons = FXCollections.observableArrayList();
 
     public ObservableList<Person> getPersonList() {
         return persons;
@@ -20,15 +20,19 @@ public class CollectionAddressBook implements Pressable {
 
     @Override
     public void add(Person person) {
-        System.out.println(person.toString());
-        if (person.getFio() != null && person.getPhone() != null) {
+        if (!(person.getPhone().equals("") || person.getFio().equals(""))) {
             persons.add(person);
+            System.out.println("add " + person);
         }
+        return;
     }
 
     @Override
-    public void update(Person person) {
-        persons.add(person);
+    public void edit(Person person) {
+        if (!(person.getPhone().equals("") || person.getFio().equals(""))) {
+            persons.add(person);
+            System.out.println("edit " + person);
+        }
     }
 
     @Override

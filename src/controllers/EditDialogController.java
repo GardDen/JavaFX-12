@@ -9,10 +9,12 @@ import javafx.stage.Stage;
 import objects.Person;
 
 public class EditDialogController {
+
+
     @FXML
-    public TextField txtFIO;
+    private TextField txtFIO;
     @FXML
-    public TextField txtPhone;
+    private TextField txtPhone;
     @FXML
     private Button okButton;
     @FXML
@@ -22,6 +24,7 @@ public class EditDialogController {
 
     public void setPerson(Person person) {
         if (person == null) {
+            System.out.println("person = null");
             return;
         }
         this.person = person;
@@ -33,8 +36,9 @@ public class EditDialogController {
         try {
             person.setFio(txtFIO.getText());
             person.setPhone(txtPhone.getText());
-        } catch (NullPointerException exc) {
-            System.out.println("Error: invalid information.");
+            if (person.getPhone().equals("") || person.getFio().equals("")) {
+                System.out.println("Поля Имя или Телефон не могут быть пустыми");
+            }
         } finally {
             actionClose(event);
         }
@@ -48,5 +52,13 @@ public class EditDialogController {
 
     public Person getPerson() {
         return person;
+    }
+
+    public void setTxtFIO(String txtFIO) {
+        this.txtFIO.setText(txtFIO);
+    }
+
+    public void setTxtPhone(String txtPhone) {
+        this.txtPhone.setText(txtPhone);
     }
 }
